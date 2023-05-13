@@ -8,9 +8,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hmzeda.newsdemo.R
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 @HiltViewModel
-open class BaseViewModel : ViewModel() {
+open class BaseViewModel @Inject constructor(): ViewModel() {
     var fragment: MutableLiveData<Fragment>? = null
     var intentClass: MutableLiveData<Pair<Intent, Class<*>>>? = null
 

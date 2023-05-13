@@ -3,6 +3,7 @@ package com.hmzeda.newsdemo.di
 import android.content.Context
 import com.hmzeda.newsdemo.BuildConfig
 import com.hmzeda.newsdemo.data.remote.APISettings
+import com.hmzeda.newsdemo.data.remote.service.NewsService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,6 +41,12 @@ class RemoteModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
             return  retrofitBuilder.client(okHttpClient).build()
+        }
+        // here is our service to get news from remote url
+        @Provides
+        @Singleton
+        fun provideNewsService(retrofit: Retrofit):NewsService{
+            return retrofit.create(NewsService::class.java)
         }
     }
 
