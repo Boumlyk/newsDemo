@@ -15,5 +15,11 @@ class Utils {
             val dateTime = LocalDateTime.parse(dateString, inputFormatter)
             return outputFormatter.format(dateTime)
         }
+        fun convertDateToWithoutNameOfMonth(dateString: String): String {
+            val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+            val outputFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm")
+            val dateTime = LocalDateTime.parse(dateString, inputFormatter)
+            return outputFormatter.format(dateTime)
+        }
     }
 }

@@ -13,10 +13,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
+    lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
         viewModel= ViewModelProvider(this)[MainActivityViewModel::class.java]
+        binding.viewModel=(viewModel as MainActivityViewModel)
         (viewModel as MainActivityViewModel).initiateViewModel(this as BaseActivity)
     }
 }

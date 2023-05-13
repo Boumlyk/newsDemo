@@ -18,6 +18,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.hmzeda.newsdemo.R
 import com.hmzeda.newsdemo.ui.BaseViewModel
+import com.hmzeda.newsdemo.ui.main.home.FragmentHomeViewModel
 import com.hmzeda.newsdemo.util.Utils
 
 class NewsAdapter(private val context: Context,private val viewModel : BaseViewModel)  :RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
@@ -35,7 +36,7 @@ class NewsAdapter(private val context: Context,private val viewModel : BaseViewM
         val news:NewsObject=itemList.get(position)
         viewHolder.title.text= Html.fromHtml(news.title.rendered)
         viewHolder.date.text=Utils.convertDate(news.date_gmt)
-        viewHolder.category.text="To do"
+//        viewHolder.category.text="To do"
         Glide.with(context)
             .load(news.newsInfoMoreInfo.imageInfo.get(0).url)
             .centerCrop()
@@ -51,6 +52,9 @@ class NewsAdapter(private val context: Context,private val viewModel : BaseViewM
                 }
             })
             .into(viewHolder.image)
+        viewHolder.itemView.setOnClickListener(View.OnClickListener {
+            (viewModel as FragmentHomeViewModel).onItemClicked(news)
+        })
     }
 
     override fun getItemCount(): Int {

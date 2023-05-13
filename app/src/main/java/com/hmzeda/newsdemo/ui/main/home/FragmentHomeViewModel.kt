@@ -1,15 +1,21 @@
 package com.hmzeda.newsdemo.ui.main.home
 
+import NewsObject
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.View
+import androidx.core.util.Pair
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.hmzeda.newsdemo.data.NewsRepository
+import com.hmzeda.newsdemo.module.cookies.Cookies
 import com.hmzeda.newsdemo.ui.BaseActivity
 import com.hmzeda.newsdemo.ui.BaseViewModel
 import com.hmzeda.newsdemo.ui.adapter.NewsAdapter
+import com.hmzeda.newsdemo.ui.detailNews.DetaitNewsActivity
+import com.hmzeda.newsdemo.ui.main.detailNews.FragmentDetailNews
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Action
@@ -23,11 +29,14 @@ class FragmentHomeViewModel @Inject constructor(private val newsRepository: News
 
     private var newsAdapter: NewsAdapter?=null
     lateinit var activity: Activity
+    @Inject
+    lateinit var cookies: Cookies
 
     lateinit var page: MutableLiveData<Int>
     fun initiateViewModel(activity: BaseActivity,recyclerView: RecyclerView) {
         super.initiateViewModel(activity)
-        this.activity=activity;
+        this.activity=activity
+//        isDetailDisplayed?.postValue(false)
         page= MutableLiveData(0)
         getNews()
 
@@ -85,6 +94,11 @@ class FragmentHomeViewModel @Inject constructor(private val newsRepository: News
         if (activity!=null){
             activity.finishAffinity()
         }
+    }
+
+    fun onItemClicked(news: NewsObject) {
+        cookies.newsClicked=news
+        intentClass?.postValue(Pair(Intent(),DetaitNewsActivity::class.java))
     }
 
 }

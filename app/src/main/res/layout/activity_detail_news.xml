@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
-            type="com.hmzeda.newsdemo.ui.main.MainActivityViewModel" />
+            type="com.hmzeda.newsdemo.ui.detailNews.DetailNewsActivityViewModel" />
 
         <import type="android.view.View" />
     </data>
@@ -16,13 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".ui.main.MainActivity">
-
+        tools:context=".ui.BaseActivity">
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            app:viewModel="@{viewModel}" />
-
+            layout="@layout/toolbar_detail"
+            app:viewModel="@{viewModel}"/>
         <FrameLayout
             android:id="@+id/fragment"
             android:layout_width="match_parent"
