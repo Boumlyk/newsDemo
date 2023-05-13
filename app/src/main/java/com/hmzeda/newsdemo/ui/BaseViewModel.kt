@@ -14,11 +14,14 @@ import javax.inject.Inject
 open class BaseViewModel @Inject constructor(): ViewModel() {
     var fragment: MutableLiveData<Fragment>? = null
     var intentClass: MutableLiveData<Pair<Intent, Class<*>>>? = null
+    var actions: MutableLiveData<List<String>>? = null
 
-   open fun initiateViewModel(activity: BaseActivity){
+
+    open fun initiateViewModel(activity: BaseActivity){
         // here where should initiate a variable
         fragment = MutableLiveData()
         intentClass = MutableLiveData()
+        actions=MutableLiveData()
 
         intentClass!!.observe(activity) { value ->
             activity.startActivity(value.first.setClass(activity, value.second))
