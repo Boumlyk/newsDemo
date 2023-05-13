@@ -1,5 +1,7 @@
 package com.hmzeda.newsdemo.di
 
+import android.content.Context
+import com.hmzeda.newsdemo.BuildConfig
 import com.hmzeda.newsdemo.data.remote.APISettings
 import dagger.Module
 import dagger.Provides
@@ -21,7 +23,7 @@ class RemoteModule {
 
         @Provides
         @Singleton
-        fun provideRetrofit(@ApplicationContext context: ApplicationContext):Retrofit{
+        fun provideRetrofit(@ApplicationContext context: Context):Retrofit{
 
             // in this section we can many thing to archive our needs and have more visibility
             // and customize our api request like interceptors, evenListner,authenticator to api..
@@ -33,9 +35,8 @@ class RemoteModule {
                 .writeTimeout(APISettings.WRITE_TIMEOUT, TimeUnit.SECONDS)
 
             val okHttpClient: OkHttpClient = httpClientBuilder.build()
-            // OkHttpClient okHttpClient = HttpsTrustManager.getUnsafeOkHttpClient();
             val retrofitBuilder: Retrofit.Builder = Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl(BuildConfig.BACKEND_BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
             return  retrofitBuilder.client(okHttpClient).build()
