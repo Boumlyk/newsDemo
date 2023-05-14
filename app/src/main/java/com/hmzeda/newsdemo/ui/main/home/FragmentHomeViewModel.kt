@@ -1,6 +1,5 @@
 package com.hmzeda.newsdemo.ui.main.home
 
-import NewsObject
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -11,11 +10,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.hmzeda.newsdemo.data.NewsRepository
 import com.hmzeda.newsdemo.module.cookies.Cookies
+import com.hmzeda.newsdemo.module.news.NewsObject
 import com.hmzeda.newsdemo.ui.BaseActivity
 import com.hmzeda.newsdemo.ui.BaseViewModel
 import com.hmzeda.newsdemo.ui.adapter.NewsAdapter
 import com.hmzeda.newsdemo.ui.detailNews.DetaitNewsActivity
-import com.hmzeda.newsdemo.ui.main.detailNews.FragmentDetailNews
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Action
@@ -68,12 +67,14 @@ class FragmentHomeViewModel @Inject constructor(private val newsRepository: News
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess(Consumer { list ->
                     if (!list.isNullOrEmpty()) {
-                        // TODO: call adapter
-                        Log.e("TAG", "getNews: "+ list.get(0).title.rendered)
+                        Log.e("TAG", "getNews: "+ list.get(0).newsInfoMoreInfo.title)
                         if (page.value!=1){
-                            list.forEach { newsAdapter?.addToList(it, newsAdapter!!.getList().size) }
+                            list.forEach {
+                                insertInLocalDb(it)
+                                newsAdapter?.addToList(it, newsAdapter!!.getList().size) }
                         }else{
                             newsAdapter?.feedList(list)
+                            insertInLocalDb(list)
                         }
                     }
                 }).doOnError(Consumer { it.stackTrace})
@@ -87,6 +88,20 @@ class FragmentHomeViewModel @Inject constructor(private val newsRepository: News
             newsAdapter= NewsAdapter(context,this)
         }
         return newsAdapter as NewsAdapter
+    }
+
+    fun insertInLocalDb(news: NewsObject) {
+        newsRepository.insertNewsInRoom(news).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess(Consumer {
+                Log.e("TAG", "insertInLocalDb: "+ it )
+            })
+            .subscribe()
+
+    }
+
+    fun insertInLocalDb(news: List<NewsObject>) {
+        news.forEach { insertInLocalDb(it) }
     }
 
     override fun onBackPressed() {

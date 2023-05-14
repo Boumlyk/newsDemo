@@ -1,6 +1,6 @@
 package com.hmzeda.newsdemo.data.remote.service
 
-import NewsObject
+import com.hmzeda.newsdemo.module.news.NewsObject
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

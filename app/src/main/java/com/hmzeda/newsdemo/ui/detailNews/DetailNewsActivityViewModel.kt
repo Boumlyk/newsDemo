@@ -1,6 +1,5 @@
 package com.hmzeda.newsdemo.ui.detailNews
 
-import NewsObject
 import android.content.Intent
 import android.view.View
 import com.hmzeda.newsdemo.module.cookies.Cookies

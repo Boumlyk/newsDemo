@@ -1,6 +1,5 @@
 package com.hmzeda.newsdemo.ui.adapter
 
-import NewsObject
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -17,6 +16,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.hmzeda.newsdemo.R
+import com.hmzeda.newsdemo.module.news.NewsObject
 import com.hmzeda.newsdemo.ui.BaseViewModel
 import com.hmzeda.newsdemo.ui.main.home.FragmentHomeViewModel
 import com.hmzeda.newsdemo.util.Utils
@@ -34,7 +34,7 @@ class NewsAdapter(private val context: Context,private val viewModel : BaseViewM
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val news:NewsObject=itemList.get(position)
-        viewHolder.title.text= Html.fromHtml(news.title.rendered)
+        viewHolder.title.text= Html.fromHtml(news.newsInfoMoreInfo.title)
         viewHolder.date.text=Utils.convertDate(news.date_gmt)
 //        viewHolder.category.text="To do"
         Glide.with(context)

@@ -1,6 +1,5 @@
 package com.hmzeda.newsdemo.ui.main.detailNews
 
-import NewsObject
 import android.app.ProgressDialog
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -17,6 +16,7 @@ import com.bumptech.glide.request.target.Target
 import com.hmzeda.newsdemo.R
 import com.hmzeda.newsdemo.databinding.FDetailNewsBinding
 import com.hmzeda.newsdemo.databinding.FHomeBinding
+import com.hmzeda.newsdemo.module.news.NewsObject
 import com.hmzeda.newsdemo.ui.BaseActivity
 import com.hmzeda.newsdemo.ui.BaseFragment
 import com.hmzeda.newsdemo.ui.util.Utils
