@@ -8,7 +8,6 @@ import com.hmzeda.newsdemo.module.news.ImageInfo
 class DataConverter {
 
     private val type = object : TypeToken<List<ImageInfo>>() {}.type
-    private val gson = Gson()
 
     @TypeConverter
     fun fromJson(json: String?): List<ImageInfo>? {

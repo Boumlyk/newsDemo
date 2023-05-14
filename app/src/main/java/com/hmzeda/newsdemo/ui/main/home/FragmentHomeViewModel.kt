@@ -106,9 +106,7 @@ class FragmentHomeViewModel @Inject constructor(private val newsRepository: News
 
     override fun onBackPressed() {
         super.onBackPressed()
-        if (activity!=null){
-            activity.finishAffinity()
-        }
+        activity.finishAffinity()
     }
 
     fun onItemClicked(news: NewsObject) {
