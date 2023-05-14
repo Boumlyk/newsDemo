@@ -1,4 +1,4 @@
-package com.hmzeda.newsdemo.ui.main.detailNews
+package com.hmzeda.newsdemo.ui.detailNews.detailNews
 
 import android.content.Intent
 import android.view.View

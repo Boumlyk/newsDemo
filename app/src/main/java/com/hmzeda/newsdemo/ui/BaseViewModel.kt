@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hmzeda.newsdemo.R
-import com.hmzeda.newsdemo.ui.main.detailNews.FragmentDetailNews
-import com.hmzeda.newsdemo.ui.main.detailNews.FragmentDetailNewsViewModel
+import com.hmzeda.newsdemo.ui.detailNews.detailNews.FragmentDetailNews
+import com.hmzeda.newsdemo.ui.detailNews.detailNews.FragmentDetailNewsViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

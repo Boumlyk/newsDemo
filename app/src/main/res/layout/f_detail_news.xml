@@ -7,7 +7,7 @@
         <import type="com.hmzeda.newsdemo.util.BindingAdapters"/>
         <variable
             name="viewModel"
-            type="com.hmzeda.newsdemo.ui.main.detailNews.FragmentDetailNewsViewModel"/>
+            type="com.hmzeda.newsdemo.ui.detailNews.detailNews.FragmentDetailNewsViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
